@@ -6,4 +6,5 @@ app_name = 'accounts'
 # 회원가입
 urlpatterns = [
     path('signup/', views.signup, name = 'signup'),
+    path('login/', views.login, name='login'),
 ]

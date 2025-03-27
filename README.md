@@ -26,12 +26,20 @@ def my_view(request):
 </div>
 ```
 
-## User modeling
+## User modeling 
+- `signup 기능 구현`
 - AbstractUser : 사용자 인증을 위한 User 모델을 커스텀하고 싶을 때
     - 기본 : username, password
     - 추가 : 추가로 필요한 정보를 커스텀할 수 있음. 
 
 ## modeling -> 장고에서 만든 User와 내가 만든 User가 충돌
 - `settings.py` : 내가 만든 User 쓰겠다.
+```python
+AUTH_USER_MODEL = ('accounts.User')
 ```
+
+`login 기능 구현`
+```python 
+from django.contrib.auth import login as auth_login 
+# 내가 만든 함수 login과 중복되므로 장고 login의 이름을 바꿈.
 ```
