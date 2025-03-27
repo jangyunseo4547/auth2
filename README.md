@@ -25,3 +25,13 @@ def my_view(request):
     {% endfor %}
 </div>
 ```
+
+## User modeling
+- AbstractUser : 사용자 인증을 위한 User 모델을 커스텀하고 싶을 때
+    - 기본 : username, password
+    - 추가 : 추가로 필요한 정보를 커스텀할 수 있음. 
+
+## modeling -> 장고에서 만든 User와 내가 만든 User가 충돌
+- `settings.py` : 내가 만든 User 쓰겠다.
+```
+```
