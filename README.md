@@ -43,3 +43,12 @@ AUTH_USER_MODEL = ('accounts.User')
 from django.contrib.auth import login as auth_login 
 # 내가 만든 함수 login과 중복되므로 장고 login의 이름을 바꿈.
 ```
+
+## articles - create 구현 
+`views.py`
+- method가 POST일떄 ArticleForm 가져오기 
+- 유효성 검사 
+    - 1) article 변수에 담아 폼을 임시 저장
+    - 2) 게시글에 대한 유저 정보 가져오기
+    - 3) 게시글 최종 저장
+    - 4) 인덱스로 보여주기
