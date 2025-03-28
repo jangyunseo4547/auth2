@@ -41,6 +41,31 @@ def detail(request,id):
     return render(request, 'detail.html', context)
 
 @login_required
+def update(request, id):
+    article = Article.objects.get(id=id)
+
+    if request.user != article.user:
+        return redirect('articles:index')
+
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', id=id)
+    
+    else:
+        form = ArticleForm(instance=article)
+
+    context = {
+        'form':form,
+    }
+    return render(request, 'update.html', context)
+
+@login_required
+def delete():
+    pass
+
+@login_required
 def comment_create(request, article_id): # 댓글은 get 요청으로 들어오는 경우 없음.
     form = CommentForm(request.POST)
     if form.is_valid():                               
