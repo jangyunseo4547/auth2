@@ -54,26 +54,11 @@ from django.contrib.auth import login as auth_login
     - 4) 인덱스로 보여주기
 
 ## 로그인을 하지 않고 게시글 작성할 수 없게 방지
+- `accounts/views.py` next_url : 로그인을 안 했을때 게시글 작성 x
+    - 로그인 0 : next_url
+    - 로그인 x : login.html
+- `articles/views.py` : 로그인해야 게시글 작성할 수 있도록
 - django에서 login_required 불러오기
-- next_url : 로그인을 안 했을때 로그인 
-```python
-from django.contrib.auth.decorators import login_required
-
-@login_required
-def login(request):
-    if request.method == 'POST':
-        form = CustomAuthenticationForm(request, request.POST)
-        if form.is_valid():
-            auth_login(request, form.get_user())
-
-        next_url = request.GET.get('next')
-
-        return redirect(next.url or 'articles:index')
-    else:
-        form = CustomAuthenticationForm()
-
-    context = {
-        'form':form,
-    }
-    return render(request, 'login.html', context)
-```
+- create
+    - 로그인 0 : `articles:index`로 이동
+    - 로그인 x : `http://127.0.0.1:8000/accounts/login/?next=/articles/create/` 
