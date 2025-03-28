@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 
 {% block body %}
     <h3>{{article.title}}</h3>
@@ -6,13 +7,14 @@
     <p>{{article.user}}</p>
 
     {% if user == article.user %}
-        <a href="{% url 'articles:update' article.id %}">update</a>
-        <a href="{% url 'articles:delete' article.id %}">delete</a>
+        <a href="{% url 'articles:update' article.id %}" class="btn btn-info mt-2">update</a>
+        <a href="{% url 'articles:delete' article.id %}" class="btn btn-info mt-2">delete</a>
     {% endif %}
 
+    <hr>
     <form action="{% url 'articles:comment_create' article.id %}" method="POST">
         {% csrf_token %}
-        {{form}}
+        {% bootstrap_form form show_label=False %}
         <input type="submit" class="btn btn-warning">
     </form>
 
@@ -20,7 +22,7 @@
     {% for comment in article.comment_set.all %}
         <li>{{comment.user.username}} - {{comment.content}}</li>
         {% if user == comment.user %}
-            <a href="{% url 'articles:comment_delete' article.id comment.id %}">delete</a>
+            <a href="{% url 'articles:comment_delete' article.id comment.id %}" class="btn btn-danger mt-3">delete</a>
         {% endif %}
     {% endfor %}
 {% endblock %}

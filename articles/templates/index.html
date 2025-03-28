@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load django_bootstrap5 %}
 {% block body %}
     <h1>index</h1>
 
@@ -8,7 +8,7 @@
         <h3>{{article.title}}</h1>
         <p>{{article.content}}</p>
         <p>{{article.user}}</p>
-        <a href="{% url 'articles:detail' article.id %}">detail</a>
+        <a href="{% url 'articles:detail' article.id %}" class="btn btn-primary">detail</a>
         <hr>
     {% endfor %}
 {% endblock %}
