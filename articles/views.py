@@ -62,8 +62,11 @@ def update(request, id):
     return render(request, 'update.html', context)
 
 @login_required
-def delete():
-    pass
+def delete(request, id):
+    article = Article.objects.get(id=id)
+    if request.user == article.user:
+        article.delete()
+    return redirect('articles:index')
 
 @login_required
 def comment_create(request, article_id): # 댓글은 get 요청으로 들어오는 경우 없음.
