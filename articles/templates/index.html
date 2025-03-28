@@ -3,10 +3,12 @@
 {% block body %}
     <h1>index</h1>
 
-    {% for article in articles %}
     <hr>
+    {% for article in articles %}
         <h3>{{article.title}}</h1>
         <p>{{article.content}}</p>
         <p>{{article.user}}</p>
+        <a href="{% url 'articles:detail' article.id %}">detail</a>
+        <hr>
     {% endfor %}
 {% endblock %}
