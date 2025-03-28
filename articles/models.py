@@ -8,6 +8,7 @@ class Article(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    # comment_set 
 
 # 댓글 
 class Comment(models.Model):
